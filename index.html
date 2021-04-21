@@ -7,18 +7,25 @@
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
         integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <script>
+        var isHovering = false;
+
         function jiggle() {
             var min = 1, max = 2;
             var rand = Math.floor(Math.random() * (max - min + 1) + min);
             console.log('Wait for ' + rand + ' seconds');
-            $('.card').toggleClass('jiggle');
+            if (!isHovering) {
+                $('.card').toggleClass('jiggle');
+            }
             setTimeout(jiggle, rand * 1000);
         }
         $(function () {
             jiggle();
             $('.card').hover(function (e) {
-                $(this).toggleClass('jiggle');
+                isHovering = true;
+                $(this).removeClass('jiggle');
                 return false;
+            }, function (e) {
+                isHovering = false;
             });
             // $('.click-to-jiggle').click(function (e) {
             //     $(this).toggleClass('jiggle');
