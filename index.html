@@ -5,10 +5,32 @@
     <title>Joël Hoekstra</title>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css" /> -->
     <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script>
+        function jiggle() {
+            var min = 1, max = 2;
+            var rand = Math.floor(Math.random() * (max - min + 1) + min);
+            console.log('Wait for ' + rand + ' seconds');
+            $('.card').toggleClass('jiggle');
+            setTimeout(jiggle, rand * 1000);
+        }
+        $(function () {
+            jiggle();
+            $('.card').hover(function (e) {
+                $(this).toggleClass('jiggle');
+                return false;
+            });
+            // $('.click-to-jiggle').click(function (e) {
+            //     $(this).toggleClass('jiggle');
+            //     return false;
+            // });
+        });
+    </script>
 </head>
 <body>
     <div>
-        <div class="card">
+        <div class="card click-to-jiggle">
             <div class="card-back">
                 <div class="line-numbers">
                     <div>1</div>
