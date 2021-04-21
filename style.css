@@ -1,7 +1,3 @@
-::root {
-  --bg-color-start: #F5A0CE;
-  --bg-color-end: #A85D85;
-}
 *, *:before, *:after {
   box-sizing: border-box;
   outline: none;
@@ -23,7 +19,7 @@ body {
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(45deg, var(--bg-color-start), var(--bg-color-end));
+  background: linear-gradient(45deg, #F5A0CE, #A85D85);
 }
 
 code, .card .line-numbers {
