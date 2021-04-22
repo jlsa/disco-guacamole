@@ -20,7 +20,8 @@ body {
   width: 100%;
   height: 100vh;
   background-color: #42378f;
-  background-image: linear-gradient(315deg, #42378f 0%, #f53844 74%);
+  background-image: linear-gradient(315deg, #f53844 0%, #42378f 84%);
+  overflow: hidden;
 }
 
 code, .card .line-numbers {
@@ -136,30 +137,37 @@ code, .card .line-numbers {
   color: #4dd0e1;
 }
 
-
 .jiggle {
     -webkit-animation: jiggle 0.2s infinite;
     -moz-animation-duration: 0.2s;
     -moz-animation-name: jiggle;
     -moz-animation-iteration-count: infinite;
-    -webkit-transform: rotate(-3deg);
-    -moz-transform: rotate(-3deg);
+    -webkit-transform: rotate(-1.5deg);
+    -moz-transform: rotate(-1.5deg);
 }
 
 @-moz-keyframes jiggle {
     0% {
-        -moz-transform: rotate(-1deg);
+        -moz-transform: rotate(-0.5deg);
     }
     50% {
-        -moz-transform: rotate(1deg);
+        -moz-transform: rotate(-0.5deg);
     }
 }
 
 @-webkit-keyframes jiggle {
     0% {
-        -webkit-transform: rotate(-1deg);
+        -webkit-transform: rotate(-0.15deg);
         }
     50% {
-        -webkit-transform: rotate(1deg);
+        -webkit-transform: rotate(0.15deg);
     }
+}
+@media only screen and (min-width: 768px) {
+  .card {
+    position: relative;
+    width: 30rem;
+    height: 15rem;
+    perspective: 150rem;
+  }
 }
