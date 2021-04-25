@@ -20,7 +20,8 @@ body {
   width: 100%;
   height: 100vh;
   background-color: #42378f;
-  background-image: linear-gradient(315deg, #f53844 0%, #42378f 84%);
+  background-image: linear-gradient(315deg, #f53844 0%, #42378f 104%);
+  background-size: 110%;
   overflow: hidden;
 }
 
@@ -52,9 +53,11 @@ code, .card .line-numbers {
   -webkit-backface-visibility: hidden;
   overflow: hidden;
 }
+
 .card-front:before, .card-front:after, .card-back:before, .card-back:after {
   position: absolute;
 }
+
 .card-front:before, .card-back:before {
   top: -40px;
   right: -40px;
@@ -65,6 +68,7 @@ code, .card .line-numbers {
   transform: rotate(45deg);
   z-index: 1;
 }
+
 .card-front:after, .card-back:after {
   content: "🇳🇱";
   top: 0;
@@ -73,27 +77,34 @@ code, .card .line-numbers {
   transform: rotate(45deg);
   z-index: 2;
 }
+
 .card-front {
   width: 100%;
   height: 100%;
   background: linear-gradient(45deg, #101010, #2c3e50);
 }
+
 .card-front:after {
   color: #212f3c;
 }
+
 .card-back {
   background: linear-gradient(-45deg, #101010, #2c3e50);
   transform: rotateX(180deg);
 }
+
 .card-back:after {
   color: #11181f;
 }
-.card:hover .card-front {
+
+.card:hover .card-front, .jiggle .card-front {
   transform: rotateX(-180deg);
 }
-.card:hover .card-back {
+
+.card:hover .card-back, .jiggle .card-back {
   transform: rotateX(0deg);
 }
+
 .card .line-numbers {
   position: absolute;
   top: 0;
@@ -106,67 +117,50 @@ code, .card .line-numbers {
   margin: 0;
   padding: 0 10px;
   background-color: rgba(255, 255, 255, 0.03);
-  font-size: 20px;/*13px;*/
+  font-size: 20px;
 }
+
 .card .line-numbers > div {
   padding: 2.5px 0;
   opacity: 0.15;
 }
+
 .card code, .card .line-numbers {
   color: whitesmoke;
 }
+
 .card .indent {
   padding-left: 30px;
 }
+
 .card .operator {
   color: #4dd0e1;
 }
+
 .card .string {
   color: #9ccc65;
 }
+
+.card .string a {
+  color: #9ccc65;
+}
+
 .card .variable {
   color: #BA68C8;
 }
+
 .card .property {
   color: #ef5350;
 }
+
 .card .method {
   color: #29b6f6;
 }
+
 .card .function {
   color: #FDD835;
 }
+
 .card .boolean {
   color: #4dd0e1;
-}
-
-.jiggle {
-    animation: jiggle 0.2s infinite;
-    animation-duration: 0.2s;
-    animation-name: jiggle;
-    animation-iteration-count: infinite;
-    transform: rotate(-1.5deg);
-}
-
-@keyframes jiggle {
-    0% {
-        transform: rotate(-0.15deg);
-        }
-    50% {
-        transform: rotate(0.15deg);
-    }
-}
-
-@media only screen and (min-width: 768px) {
-  /* code, .card .line-numbers {
-    font-family: "Lucida Console", Monaco, monospace;
-    font-size: 14px;
-  }
-
-  .card {
-    position: relative;
-    width: 30rem;
-    height: 15rem;
-    perspective: 180rem;
-  } */
 }

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
         integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
     <script>
         window.mobileAndTabletCheck = function () {
                 let check = false;
@@ -17,8 +18,8 @@
 
         function jiggle() {
             if (!isJiggling) {
-                var min = 0.75, max = 1.5;
-                var rand = (Math.random() * (max - min + 1) + min);
+                var min = 0.5, max = 0.75;
+                var rand = (Math.random() * (max - min) + min);
                 var waitTime = Math.floor(rand * 1000);
                 if (!isHovering) {
                     $('.card').addClass('jiggle');
@@ -54,7 +55,8 @@
                 isJiggling = true;
                 return false;
             }, function (e) {
-                isHovering = false;
+                // isHovering = false;
+                _.debounce(function () { isHovering = false;}, 300);
             });
         });
         (function (l) { var i, s = { touchend: function () { } }; for (i in s) l.addEventListener(i, s) })(document); // sticky hover fix in iOS
@@ -79,7 +81,7 @@
                     <div class="indent"> <span class="property">name</span><span class="operator">: </span><span class="string">'Joël Hoekstra'</span><span>,</span></div>
                     <div class="indent"> <span class="property">title</span><span class="operator">: </span><span class="string">'Software Engineer'</span><span>,</span></div>
                     <div class="indent"> <span class="property">contact</span><span class="operator">: </span><span>{</span>
-                        <div class="indent"> <span class="property">email</span><span class="operator">: </span><span class="string">'dummymail@example.com'</span><span>,</span></div>
+                        <div class="indent"> <span class="property">github</span><span class="operator">: </span><span class="string">'<a href="https://github.com/jlsa">github.com/jlsa</a>'</span><span>,</span></div>
                         <div class="indent"><span class="property">website</span><span class="operator">:</span><span class="string">'joelhoekstra.nl'</span></div><span>}</span>
                     </div><span>}</span>
                 </code>
@@ -97,25 +99,11 @@
                     <div>9</div>
                 </div>
                 <code>
-                    <!-- <span class="variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="string">'mouseover'</span><span>, </span><span class="function">() => </span><span>{ </span> -->
                     <span class="variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="string event-name">'click'</span><span>, </span><span class="function">() => </span><span>{ </span>
                     <div class="indent"><span class="variable">this</span><span>.</span><span class="property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span>
                 </code>
             </div>
         </div>
     </div>
-    <!-- <script>
-        var orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
-
-        if (orientation === "landscape-primary") {
-            console.log("That looks good.");
-        } else if (orientation === "landscape-secondary") {
-            console.log("Mmmh... the screen is upside down!");
-        } else if (orientation === "portrait-secondary" || orientation === "portrait-primary") {
-            console.log("Mmmh... you should rotate your device to landscape");
-        } else if (orientation === undefined) {
-            console.log("The orientation API isn't supported in this browser :(");
-        }
-    </script> -->
 </body>
 </html>
