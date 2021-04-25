@@ -39,11 +39,14 @@
         }
 
         function setEventName() {
-            if (mobileAndTabletCheck()) {
-                $('.event-name').text('\'click\'');
-            } else {
-                $('.event-name').text('\'mouseover\'');
-            }
+            $('.event-name').text('\'????\'');
+            setTimeout(function () {
+                if (mobileAndTabletCheck()) {
+                    $('.event-name').text('\'click\'');
+                } else {
+                    $('.event-name').text('\'mouseover\'');
+                }
+            }, 300);
         }
 
         $(function () {
@@ -55,7 +58,6 @@
                 isJiggling = true;
                 return false;
             }, function (e) {
-                // isHovering = false;
                 _.debounce(function () { isHovering = false;}, 300);
             });
         });
@@ -99,7 +101,12 @@
                     <div>9</div>
                 </div>
                 <code>
-                    <span class="variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="string event-name">'click'</span><span>, </span><span class="function">() => </span><span>{ </span>
+                    <div><span class="variable">const</span><span> </span><span class="function">greeting</span> <span class="operator">=
+                        </span>
+                        <span class="string">'Hello! 👋'</span><span>;</span>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div><span class="variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="string event-name">'click'</span><span>, </span><span class="function">() => </span><span>{ </span></div>
                     <div class="indent"><span class="variable">this</span><span>.</span><span class="property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span>
                 </code>
             </div>
