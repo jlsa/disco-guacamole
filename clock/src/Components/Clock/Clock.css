@@ -1,14 +1,15 @@
 :root {
+  font-size: 12pt;
   --spacing: 10px;
-  --elem-offset: 66px;
+  --elem-offset: 41.8px; /* 66px */
   --line-width: 5em;
   --border-radius: 30px;
   /* --color-secondary: #fbfbfe; */
   --color-secondary: #2a2c2d;
   --color-primary: teal;
   --color-accent: teal;
-  --font-color:  teal;
-  --font-color-secondary:  #2a2c2d;
+  --font-color:  #ffffff;
+  --font-color-secondary:  #ffffff;
 }
 
 .theme-dark {
@@ -51,19 +52,19 @@ ul, li {
   width: calc((var(--line-width) * 6) + (var(--spacing) * 12) + (var(--spacing) * 2.5 * 2));
   /* padding-top: calc((-1 * var(--elem-offset)) * 4.5); */
   margin: 0 auto;
-  /* padding-top: 300px; */
-  /* margin-bottom: -300px; */
+  padding-top: 300px;
+  margin-bottom: -300px;
 }
 
 .numberline {
   background-color: var(--color-accent);
   width: var(--line-width);
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: 0.5em; /* 1em */
+  padding-bottom: 0.5em; /* 1em */
   border-radius: calc(var(--border-radius) * 2);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
   rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  transition: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.75);
+  /* transition: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.75); */
   float: left;
   margin-left: var(--spacing);
   margin-right: var(--spacing);
@@ -71,23 +72,27 @@ ul, li {
 }
 
 .numberline > li {
-  margin: 1em;
-  padding: 1em;
+  margin: 0.5em;
+  padding: 0.5em;
   color: var(--font-color-secondary);
   text-align: center;
+
   /* transition: 0.6s cubic-bezier(0.85, 0, 0.15, 1); */
 }
 
 .numberline > li.selected {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
+  /* background-color: var(--color-secondary); */
   border-radius: var(--border-radius);
   color: var(--font-color);
+  font-size: 13pt;
+  font-weight: bold;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px,
     rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px,
     rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  transition: 0.9s cubic-bezier(0.25, 0.8, 0.25, 1.75);
+  /* transition: 0.9s cubic-bezier(0.25, 0.8, 0.25, 1.75); */
 }
 
 .offset-0 {
