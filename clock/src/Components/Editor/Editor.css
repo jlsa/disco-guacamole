@@ -1,0 +1,49 @@
+.editor {
+  position: absolute;
+  /* top: -100px; */
+  transform: translateY(-100px);
+  z-index: 10;
+  background-color: var(--color-primary);
+  color: var(--font-color);
+  width: 100%;
+  min-height: 100px;
+  padding: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.editor.show {
+  transform: translateY(0px);
+  /* top: 0px; */
+}
+
+.editor-show-btn {
+  position: absolute;
+  width: 100px;
+  z-index: 1;
+  transform: translateY(0.8em);
+  left: 25px;
+  background-color: var(--color-primary);
+  color: var(--font-color);
+  font-size: 1.15em;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border: 0px;
+  padding: 1em;
+}
+
+.editor-show-btn:hover {
+  background-color: var(--color-highlight);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  font-weight: bold;
+}
+
+.editor-show-btn.show {
+  transform: translateY(calc(100px + 0.8em));
+}

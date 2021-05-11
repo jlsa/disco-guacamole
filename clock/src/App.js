@@ -4,8 +4,9 @@ import Editor from './Components/Editor/Editor';
 const App = () => {
   return (
     <>
-      <Clock />
-      {/* <Editor /> */}
+      <Editor>
+        <Clock />
+      </Editor>
     </>
   );
 };

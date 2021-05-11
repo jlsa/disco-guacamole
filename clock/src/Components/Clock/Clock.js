@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../Easings.css';
 import './Clock.css';
 import NumberLine from './NumberLine';
 import TimeDivider from './TimeDivider';
@@ -10,7 +11,7 @@ const Clock = () => {
   const [minutes, setMinutes] = useState([0, 0]);
   const [hours, setHours] = useState([0, 0]);
 
-  const harold = standIn => {
+  const harold = (standIn) => {
     if (standIn < 10) {
       standIn = '0' + standIn
     }

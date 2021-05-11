@@ -1,15 +1,17 @@
 import React from 'react';
 
 const NumberLine = ({ numbers, selected }) => {
-  console.log(numbers, selected);
+  const easing = 'ease-joel';//'ease-in-out-back';
   const offset = -1 * selected;
+
   return (
-    <ul className={`numberline offset-${Math.abs(offset)} ease-in-out-sine`}>
+    <ul className={`numberline offset-${Math.abs(offset)} ${easing}`}>
       {numbers && numbers.map((number, index) => {
+        let selectedClassName = (selected === number ? 'selected' : '');
         return (
           <li
             key={index}
-            className={`${selected === number ? 'selected' : ''} ease-in-out-sine`}
+            className={`${selectedClassName} ${easing}`}
           >{number}</li>
         )
       })}
