@@ -4,7 +4,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import '../Easings.css';
 import './Editor.css';
 
-const Editor = ({ children }) => {
+const Editor = () => {
   const [show, setShow] = useState(false);
   return (
     <>
@@ -15,7 +15,6 @@ const Editor = ({ children }) => {
         className={`editor-show-btn ${show ? 'show' : ''} ease-joel`}
         onClick={() => setShow(!show)}
       >{show ? <FaChevronUp /> : <FaChevronDown />}</button>
-      {children}
     </>
   );
 };

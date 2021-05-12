@@ -13,6 +13,10 @@
   --font-color-secondary:  #ffffff;
 }
 
+body {
+  margin: 0;
+}
+
 .theme-dark {
   /* --color-primary: #17ed90;
   --color-secondary: #2a2c2d;

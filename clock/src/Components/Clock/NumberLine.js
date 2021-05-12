@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NumberLine = ({ numbers, selected }) => {
-  const easing = 'ease-joel';//'ease-in-out-back';
+  const easing = 'ease-in-out-back';
   const offset = -1 * selected;
 
   return (

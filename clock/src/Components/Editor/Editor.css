@@ -32,6 +32,7 @@
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   border: 0px;
   padding: 1em;
+  cursor: pointer;
 }
 
 .editor-show-btn:hover {
