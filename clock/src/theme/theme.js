@@ -1,6 +1,12 @@
 import { darken, lighten } from "polished";
 
 const colors = {
+  teal: 'teal',
+  bg: '#2a2c2d',
+  black: '#000e1a',
+  white: '#fff',
+  blue: '#007ce0',
+  navy: '#004175',
   primary: "#06c",
   secondary: "#096",
   danger: "#f60",
@@ -15,7 +21,7 @@ const boxShadowHover = `rgba(0, 0, 0, 0.24) 0px 3px 8px`;
 
 const radii = [0, 2, 4, 8, 16, 32, 64];
 
-const space = [0, 2, 4, 8, 16, 32, 64];
+const space = [0, 4, 8, 16, 32, 64, 128, 256, 512];
 
 const buttonStyles = {
   border: `3px solid`,
@@ -33,10 +39,49 @@ const buttonStyles = {
   }
 };
 
+const numberLineStyles = {
+  backgroundColor: colors.primary,
+  width: "5em",
+  paddingTop: "0.5em",
+  paddingBottom: "0.5em",
+  borderRadius: radii[3],
+  boxShadow: `
+    rgba(50, 50, 93, 0.25) 0px 30px 60px - 12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px - 18px inset
+  `,
+  transition: '0.5s cubic-bezier(0.25, 0.8, 0.25, 1.75)',
+  float: 'left',
+  marginLeft: '10px',
+  marginRight: '10px'
+//     background-color: var(--color - accent);
+// width: var(--line - width);
+// padding - top: 0.5em; /* 1em */
+// padding - bottom: 0.5em; /* 1em */
+// border - radius: calc(var(--border - radius) * 2);
+// box - shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px - 12px inset,
+//   rgba(0, 0, 0, 0.3) 0px 18px 36px - 18px inset;
+// /* transition: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.75); */
+// float: left;
+// margin - left: var(--spacing);
+// margin - right: var(--spacing);
+//   /* transition: 0.6s cubic-bezier(0.65, 0, 0.35, 1); */
+};
+
 export default {
   colors,
   space,
   radii,
+  numberLines: {
+    hours: {
+      ...numberLineStyles,
+    },
+    minutes: {
+      ...numberLineStyles,
+    },
+    seconds: {
+      ...numberLineStyles,
+    }
+  },
   buttons: {
     primary: {
       ...buttonStyles,

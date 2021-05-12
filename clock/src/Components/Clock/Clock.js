@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import '../Easings.css';
-import './Clock.css';
+// import '../Easings.css';
+// import './Clock.css';
+import styled from 'styled-components';
+import { space, width, fontSize, color } from 'styled-system';
+import theme from '../../theme/theme';
 import NumberLine from './NumberLine';
 import TimeDivider from './TimeDivider';
 
+const StyledClock = styled('div')(
+  {
+    width: 'calc((5em * 6) + (10px * 12) + (10px * 2.5 * 2))',
+    margin: '0 auto',
+    paddingTop: '300px',
+    mb: '-300px'
+  },
+  space,
+  width,
+  fontSize,
+  color
+);
+
 const Clock = () => {
-  const [theme, setTheme] = useState('dark');
   const [time, setTime] = useState(new Date());
   const [seconds, setSeconds] = useState([0, 0]);
   const [minutes, setMinutes] = useState([0, 0]);
@@ -47,7 +62,7 @@ const Clock = () => {
   }, [time]);
 
   return (
-    <div className={`clock theme-${theme}`}>
+    <StyledClock>
       <NumberLine numbers={[0, 1, 2]} selected={hours[0]}  />
       <NumberLine numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]} selected={hours[1]} />
       <TimeDivider />
@@ -58,7 +73,7 @@ const Clock = () => {
       <NumberLine numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]} selected={seconds[1]} />
 
       <br style={{clear:"both"}} />
-    </div>
+    </StyledClock>
   );
 };
 
