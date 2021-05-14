@@ -1,4 +1,5 @@
 import { darken, lighten } from "polished";
+import { easings, transitions, customTransition } from './Easings';
 
 const colors = {
   teal: 'teal',
@@ -40,31 +41,22 @@ const buttonStyles = {
 };
 
 const numberLineStyles = {
-  backgroundColor: colors.primary,
-  width: "5em",
-  paddingTop: "0.5em",
-  paddingBottom: "0.5em",
-  borderRadius: radii[3],
+  padding: 0,
+  margin: 0,
+  backgroundColor: colors.secondary,
+  width: "4em",
+  listStyle: 'none',
+  paddingTop: "0.5rem",
+  paddingBottom: "0.5rem",
+  borderRadius: radii[5],
   boxShadow: `
     rgba(50, 50, 93, 0.25) 0px 30px 60px - 12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px - 18px inset
   `,
-  transition: '0.5s cubic-bezier(0.25, 0.8, 0.25, 1.75)',
+  transition: customTransition('transform', '600ms', easings.inOutBack),
   float: 'left',
   marginLeft: '10px',
-  marginRight: '10px'
-//     background-color: var(--color - accent);
-// width: var(--line - width);
-// padding - top: 0.5em; /* 1em */
-// padding - bottom: 0.5em; /* 1em */
-// border - radius: calc(var(--border - radius) * 2);
-// box - shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px - 12px inset,
-//   rgba(0, 0, 0, 0.3) 0px 18px 36px - 18px inset;
-// /* transition: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.75); */
-// float: left;
-// margin - left: var(--spacing);
-// margin - right: var(--spacing);
-//   /* transition: 0.6s cubic-bezier(0.65, 0, 0.35, 1); */
+  marginRight: '10px',
 };
 
 export default {
@@ -74,9 +66,13 @@ export default {
   numberLines: {
     hours: {
       ...numberLineStyles,
+      backgroundColor: darken(0.1, colors.secondary),
+      transition: transitions.easeInOutExpo,
     },
     minutes: {
       ...numberLineStyles,
+      backgroundColor: darken(0.05, colors.secondary),
+      transition: transitions.easeInOutCubic,
     },
     seconds: {
       ...numberLineStyles,

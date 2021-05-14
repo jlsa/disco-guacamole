@@ -63,14 +63,38 @@ const Clock = () => {
 
   return (
     <StyledClock>
-      <NumberLine numbers={[0, 1, 2]} selected={hours[0]}  />
-      <NumberLine numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]} selected={hours[1]} />
+      <NumberLine
+        numbers={[0, 1, 2]}
+        selected={hours[0]}
+        variant="hours"
+      />
+      <NumberLine
+        numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}
+        selected={hours[1]}
+        variant="hours"
+      />
       <TimeDivider />
-      <NumberLine numbers={[0, 1, 2, 3, 4, 5]} selected={minutes[0]} />
-      <NumberLine numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]} selected={minutes[1]} />
+      <NumberLine
+        numbers={[0, 1, 2, 3, 4, 5]}
+        selected={minutes[0]}
+        variant="minutes"
+      />
+      <NumberLine
+        numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}
+        selected={minutes[1]}
+        variant="minutes"
+      />
       <TimeDivider />
-      <NumberLine numbers={[0, 1, 2, 3, 4, 5]} selected={seconds[0]} />
-      <NumberLine numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]} selected={seconds[1]} />
+      <NumberLine
+        numbers={[0, 1, 2, 3, 4, 5]}
+        selected={seconds[0]}
+        variant="seconds"
+      />
+      <NumberLine
+        numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}
+        selected={seconds[1]}
+        variant="seconds"
+      />
 
       <br style={{clear:"both"}} />
     </StyledClock>

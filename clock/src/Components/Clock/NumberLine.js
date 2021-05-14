@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { space, width, fontSize, color } from 'styled-system';
+import { space, width, fontSize, color, variant } from 'styled-system';
 import theme from '../../theme/theme';
 
 const offsetSize = '41.8px';
@@ -38,28 +38,45 @@ const offsets = {
   }
 };
 const Line = styled('ul')(
-  {
-    listStyle: 'none',
-    padding: 0,
-    margin: 0,
-    // backgroundColor: theme.colors.blue,
-    width: "3em",
-    paddingTop: "0.5rem",
-    paddingBottom: "0.5rem",
-    borderRadius: theme.radii[3],
-    boxShadow: `
-     rgba(0, 0, 0, 0.24) 0px 3px 8px inset
-    `,
-    transition: '0.6s cubic-bezier(0.25, 0.8, 0.25, 1.75)',
-    float: 'left',
-    marginLeft: '10px',
-    marginRight: '10px'
-  },
   offsets,
   space,
   width,
   fontSize,
-  color
+  color,
+  {
+    appearance: 'hours'
+  },
+  variant({
+    variants: {
+      hours: {
+        ...theme.numberLines.hours,
+      },
+      minutes: {
+        ...theme.numberLines.minutes,
+      },
+      seconds: {
+        ...theme.numberLines.seconds,
+      }
+    }
+  })
+  // {
+  //   ...theme.numberLines.hours,
+
+
+  //   // color: theme.colors.text.dark,
+  //   // // backgroundColor: theme.colors.blue,
+  //   // width: "3em",
+  //   // paddingTop: "0.5rem",
+  //   // paddingBottom: "0.5rem",
+  //   // borderRadius: theme.radii[3],
+  //   // boxShadow: `
+  //   //  rgba(0, 0, 0, 0.24) 0px 3px 8px inset
+  //   // `,
+  //   // transition: '0.6s cubic-bezier(0.25, 0.8, 0.25, 1.75)',
+  //   // float: 'left',
+  //   // marginLeft: '10px',
+  //   // marginRight: '10px'
+  // },
 );
 
 const LineItem = styled('li')(
@@ -90,13 +107,11 @@ const LineItem = styled('li')(
   color
 );
 
-const NumberLine = ({ numbers, selected }) => {
+const NumberLine = ({ numbers, selected, variant = 'hours' }) => {
   return (
     <Line
-      // p={}
-      bg='teal'
-      color='text.light'
       className={`offset-${selected}`}
+      variant={variant}
     >
       {
         numbers && numbers.map(
