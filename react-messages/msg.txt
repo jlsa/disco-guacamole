@@ -1,0 +1,17 @@
+const [messages, setMessages] = useState([]);
+  const removeMessage = uid => {
+    console.log(uid);
+    console.log(messages); // displays the state when this method is created.
+    //like the state that lives inside this scope is different
+  }
+  const addMessage = (message, variant) => {
+    const uid = Date.now();
+    const alert = (<Alert
+      variant={variant}
+      dismissible
+      name={uid}
+      onClose={() => removeMessage(uid)}
+    >{message}</Alert>);
+
+    setMessages([...messages, alert]);
+  }
