@@ -8,18 +8,28 @@
         return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
       }
       if (hasGetUserMedia()) {
-        console.log('succes');
+        console.log('getUserMedia() is supported by your browser');
       } else{
         console.log('getUserMedia() is not supported by your browser');
       }
+
     </script>
   </head>
   <body>
-    <video autoplay></video>
-
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="snap">Snap a photo!</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <img src="" id="image" width="640" height="480" />
     <script>
-      const constraints = {
-        video: true,
+      const vgaConstraints = {
+        video: {
+          width: {
+            min: 640
+          },
+          height: {
+            min: 480
+          }
+        }
       };
 
       const hdConstraints = {
@@ -33,11 +43,25 @@
         },
       };
 
-      const video = document.querySelector('video');
+      const constraints = vgaConstraints;
 
-      navigator.mediaDevices.getUserMedia(hdConstraints).then(stream => {
+      // const video = document.querySelector('video');
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
+      const video = document.getElementById('video');
+
+      navigator.mediaDevices.getUserMedia(constraints).then(stream => {
         video.srcObject = stream;
+        video.play();
       });
+
+      const button = document.getElementById('snap');
+      button.addEventListener('click', () => {
+        const width = constraints.video.width.min;
+        const height = constraints.video.height.min;
+        context.drawImage(video, 0, 0, width, height);
+      });
+
     </script>
   </body>
 </html>
