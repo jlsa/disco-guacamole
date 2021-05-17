@@ -1,8 +1,58 @@
+<!-- https://www.html5rocks.com/en/tutorials/getusermedia/intro/ -->
+<!-- https://github.com/cozmo/jsQR -->
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HTML 5 Camera test</title>
+    <title>HTML 5 Camera test + jsQR</title>
+    <script src="./jsQR.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Ropa Sans', sans-serif;
+        color: #333;
+        max-width: 640px;
+        margin: 0 auto;
+        position: relative;
+      }
 
+      #githubLink {
+        position: absolute;
+        right: 0;
+        top: 12px;
+        color: #2D99FF;
+      }
+
+      h1 {
+        margin: 10px 0;
+        font-size: 40px;
+      }
+
+      #loadingMessage {
+        text-align: center;
+        padding: 40px;
+        background-color: #eee;
+      }
+
+      #canvas {
+        width: 100%;
+      }
+
+      #output {
+        margin-top: 20px;
+        background: #eee;
+        padding: 10px;
+        padding-bottom: 0;
+      }
+
+      #output div {
+        padding-bottom: 10px;
+        word-wrap: break-word;
+      }
+
+      #noQRFound {
+        text-align: center;
+      }
+    </style>
     <script type="text/javascript">
       function hasGetUserMedia() {
         return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
@@ -13,16 +63,52 @@
         console.log('getUserMedia() is not supported by your browser');
       }
 
+      const firstFunction = () => {
+        return new Promise((resolve, reject) => {
+          let y = 0;
+          setTimeout(() => {
+            for (i = 0; i < 10; i++) {
+              y++;
+            }
+            // check for QR code here
+
+            console.log('loop completed')
+            resolve(y);
+          }, 2000)
+        });
+      };
+
+      const secondFunction = async () => {
+        console.log('before promise call');
+
+        let result = await firstFunction();
+        console.log('promise resolved ' + result);
+        console.log('next step');
+
+        secondFunction();
+      };
     </script>
   </head>
   <body>
+    <h1>jsQR Demo</h1>
+    <a id="githubLink" href="https://github.com/cozmo/jsQR">View documentation on Github</a>
+    <p>Pure JavaScript QR code decoding library.</p>
+    <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+    <!-- <canvas id="canvas" hidden></canvas> -->
+    <div id="output" hidden>
+      <div id="outputMessage">No QR code detected.</div>
+      <div hidden><b>Data:</b> <span id="outputData"></span></div>
+    </div>
+
     <video id="video" width="640" height="480" autoplay></video>
     <button id="snap">Snap a photo!</button>
     <canvas id="canvas" width="640" height="480"></canvas>
-    <img src="" id="image" width="640" height="480" />
+
+    <div id="reader" width="600px"></div>
     <script>
       const vgaConstraints = {
         video: {
+          facingMode: "environment",
           width: {
             min: 640
           },
@@ -34,6 +120,7 @@
 
       const hdConstraints = {
         video: {
+          facingMode: "environment",
           width: {
             min: 1280
           },
@@ -45,21 +132,65 @@
 
       const constraints = vgaConstraints;
 
-      // const video = document.querySelector('video');
-      const canvas = document.getElementById('canvas');
-      const context = canvas.getContext('2d');
       const video = document.getElementById('video');
+
+      // const video = document.createElement("video");
+      const canvasElement = document.getElementById("canvas");
+      const canvas = canvasElement.getContext("2d");
+      const loadingMessage = document.getElementById("loadingMessage");
+      const outputContainer = document.getElementById("output");
+      const outputMessage = document.getElementById("outputMessage");
+      const outputData = document.getElementById("outputData");
+
+      function drawLine(begin, end, color) {
+        canvas.beginPath();
+        canvas.moveTo(begin.x, begin.y);
+        canvas.lineTo(end.x, end.y);
+        canvas.lineWidth = 8;
+        canvas.strokeStyle = color;
+        canvas.stroke();
+      }
 
       navigator.mediaDevices.getUserMedia(constraints).then(stream => {
         video.srcObject = stream;
+        video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
         video.play();
+        secondFunction();
       });
 
       const button = document.getElementById('snap');
       button.addEventListener('click', () => {
         const width = constraints.video.width.min;
         const height = constraints.video.height.min;
-        context.drawImage(video, 0, 0, width, height);
+        canvas.drawImage(video, 0, 0, width, height);
+
+        loadingMessage.innerText = "⌛ Loading video...";
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+          loadingMessage.hidden = true;
+          canvasElement.hidden = false;
+          outputContainer.hidden = false;
+
+          canvasElement.height = height;
+          canvasElement.width = width;
+          canvas.drawImage(video, 0, 0, width, height);
+
+          var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+          var code = jsQR(imageData.data, imageData.width, imageData.height, {
+            inversionAttempts: "dontInvert",
+          });
+          if (code) {
+            drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+            drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+            drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+            drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+            outputMessage.hidden = true;
+            outputData.parentElement.hidden = false;
+            outputData.innerText = code.data;
+          } else {
+            outputMessage.hidden = false;
+            outputData.parentElement.hidden = true;
+          }
+        }
       });
 
     </script>
