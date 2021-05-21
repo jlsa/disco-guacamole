@@ -172,3 +172,11 @@ body {
   }
 }
 
+
+
+.note {
+  background-color: #ffd;
+  border-left: 0.25rem solid #ff6;
+  padding: 0.5rem;
+  color: #555;
+}
