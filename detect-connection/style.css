@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  overflow: hidden;
+  background: #f2f2f2;
+}
+
+.wrapper {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  animation: show_toast 1s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+
+@keyframes show_toast {
+  0% {
+    transform: translateX(100%);
+  }
+  80%,
+  100% {
+    transform: translateX(-20px);
+  }
+}
+
+.wrapper.hide {
+  animation: hide_toast 1s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+
+@keyframes hide_toast {
+  0% {
+    transform: translateX(-20px);
+  }
+
+  80%,
+  100% {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+  }
+}
+
+.wrapper .toast {
+  background-color: #fff;
+  padding: 20px 15px 20px 20px;
+  border-radius: 10px;
+  border-left: 5px solid #2ecc71;
+  box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.15);
+  width: 430px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrapper .toast.offline {
+  border-color: rgba(192, 57, 43, 1.0);
+}
+
+.toast .content {
+  display: flex;
+  align-items: center;
+}
+
+.content .icon {
+  font-size: 25px;
+  color: #fff;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50%;
+  background-color: #2ecc71;
+}
+
+.toast.offline .content .icon {
+  background: rgba(192, 57, 43, 1.0);
+}
+
+.content .details {
+  margin-left: 15px;
+}
+
+.details span {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.details p {
+  color: #878787;
+}
+
+.toast .close-icon {
+  color: #878787;
+  font-size: 23px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+.close-icon:hover {
+  background-color: #efefef;
+  transform: scale(0.95);
+}
+
+.close-icon:active {
+  transform: scale(0.75);
+}
+
+.wrapper-left {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.wifi-icon {
+  font-size: 15px;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  background-color: rgba(46, 204, 113, 1.0);/* #2ecc71;*/
+  animation: pulse 2s infinite;
+}
+
+.wifi-icon.offline {
+  background: rgba(192, 57, 43, 1.0);/* #FD471C; */
+  animation: pulse-offline 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(46, 204, 113, 0);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes pulse-offline {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(192, 57, 43, 0);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+}
+
