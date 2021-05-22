@@ -3,17 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello World!</title>
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <link rel="stylesheet" href="tailwind.css">
 </head>
 
-<body style="background: white;">
-  <h1>Hello World!</h1>
-  <p>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-  </p>
+<body>
+<p class="font-mono">
+  We are using Node.js <span id="node-version" class="font-sans"></span>,
+  Chromium <span id="chrome-version" class="font-mono"></span>,
+  and Electron <span id="electron-version" class="font-serif"></span>.
+</p>
 </body>
 
 </html>
