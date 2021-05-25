@@ -14,6 +14,7 @@
 }
 
 .theme-dark {
+  color: var(--font-color);
   /* --color-primary: #17ed90;
   --color-secondary: #2a2c2d;
   --color-accent: #12cdea;
@@ -26,6 +27,7 @@
 }
 
 .theme-light {
+  color: var(--font-color);
 
   /* --color-primary: #0060df;
   --color-secondary: #fbfbfe;
